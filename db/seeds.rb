@@ -26,3 +26,4 @@ reservation2 = Reservation.create(customer: user1, reserve_for_use_date: Date.to
 ReservationItem.create(reservation: reservation1, item: item1)
 ReservationItem.create(reservation: reservation1, item: item2)
 ReservationItem.create(reservation: reservation2, item: item3)
+puts "seeds data created successfully"
