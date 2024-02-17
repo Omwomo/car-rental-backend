@@ -34,19 +34,15 @@ class Api::V1::PagesController < ApplicationController
   end
 
   def destroy_item
-    # Modify authentication logic
-    if true # Modify condition
-      item = Item.find_by(id: params[:id])
-      if item.nil?
-        render json: { error: 'Item not found' }, status: :not_found
-      else
-        item.destroy
-
-        render json: {
-          status: { code: 200, message: 'Item deleted successfully.' },
-          data: ItemSerializer.new(item).serializable_hash[:data][:attributes]
-        }, status: :ok
-      end
+    item = Item.find_by(id: params[:id])
+    if item.nil?
+      render json: { error: 'Item not found' }, status: :not_found
+    elsif authorized_to_delete_item?(item)
+      item.destroy
+      render json: {
+        status: { code: 200, message: 'Item deleted successfully.' },
+        data: ItemSerializer.new(item).serializable_hash[:data][:attributes]
+      }, status: :ok
     else
       render json: { error: 'Unauthorized' }, status: :unauthorized
     end
@@ -55,10 +51,10 @@ class Api::V1::PagesController < ApplicationController
   def reservations
     per_page = params[:per_page] || 10
     page = params[:page] || 1
-    private_user = params[:private_user] || false
     query = params[:query]
+    private_user = params[:private_user] || false
 
-    reservations = if true # Modify condition
+    reservations = if private_user
                      Reservation.includes(:items)
                    elsif query.present?
                      Reservation.search(query)
