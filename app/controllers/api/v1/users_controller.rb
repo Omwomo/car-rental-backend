@@ -104,6 +104,7 @@ class Api::V1::UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:first_name, :last_name, :city) # You will add neccesary params like email after addind devise
+    # You will add neccesary params like email after addind devise
+    params.require(:user).permit(:first_name, :last_name, :city)
   end
 end
