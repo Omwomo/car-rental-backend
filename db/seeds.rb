@@ -14,9 +14,9 @@ user1 = User.create(username: 'jdoe123', first_name: 'John', last_name: 'Doe', c
 user2 = User.create(username: 'janesmith89', first_name: 'Jane', last_name: 'Smith', city: 'San Francisco')
 
 # Create Items
-item1 = Item.create(admin: user1, name: 'Item 1', image: 'image_data_1', description: 'Description 1', city: 'Chicago')
-item2 = Item.create(admin: user1, name: 'Item 2', image: 'image_data_2', description: 'Description 2', city: 'Los Angeles')
-item3 = Item.create(admin: user2, name: 'Item 3', image: 'image_data_3', description: 'Description 3', city: 'Seattle')
+item1 = Item.create(admin: user1, name: 'Item 1', image: 'image_data_1', description: 'Description 1', city: 'Chicago', rates_per_day: 50, rates_per_hour: 10, availability_status: true, mileage: '10000 miles', fuel_type: 'Petrol', collision_cover: false)
+item2 = Item.create(admin: user1, name: 'Item 2', image: 'image_data_2', description: 'Description 2', city: 'Los Angeles', rates_per_day: 60, rates_per_hour: 12, availability_status: true, mileage: '12000 miles', fuel_type: 'Diesel', collision_cover: true)
+item3 = Item.create(admin: user2, name: 'Item 3', image: 'image_data_3', description: 'Description 3', city: 'Seattle', rates_per_day: 45, rates_per_hour: 8, availability_status: true, mileage: '8000 miles', fuel_type: 'Electric', collision_cover: false)
 
 # Create Reservations
 reservation1 = Reservation.create(customer: user2, reserve_for_use_date: Date.today, city: 'San Francisco')
