@@ -1,7 +1,4 @@
 class Api::V1::ItemsController < ApplicationController
-  before_action :set_item, only: %i[show update destroy]
-  before_action :set_user, only: [:index]
-
   # GET /api/v1/:username/items
   def index
     per_page = params[:per_page] || 10

@@ -1,11 +1,13 @@
 class Api::V1::PagesController < ApplicationController
   # before_action :authenticate_user!, except: [:items]
 
-  respond_to :json
-
   # rescue_from CanCan::AccessDenied do |_exception|
   #   render json: { error: 'Unauthorized' }, status: :unauthorized
   # end
+
+  def index
+    # will serve as the root route
+  end
 
   def items
     per_page = params[:per_page] || 10
