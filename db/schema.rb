@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_02_17_035534) do
+ActiveRecord::Schema[7.1].define(version: 2024_02_18_015007) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -22,12 +22,11 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_17_035534) do
     t.string "city"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "rates_per_day"
-    t.integer "rates_per_hour"
-    t.boolean "availability_status"
-    t.string "mileage"
-    t.string "fuel_type"
-    t.boolean "collision_cover"
+    t.decimal "finance_fee", precision: 10, scale: 2
+    t.decimal "option_to_purchase_fee", precision: 10, scale: 2
+    t.decimal "total_amount_payable", precision: 10, scale: 2
+    t.integer "duration"
+    t.decimal "apr_representative", precision: 5, scale: 2
     t.index ["admin_id"], name: "index_items_on_admin_id"
   end
 
@@ -56,6 +55,13 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_17_035534) do
     t.string "city"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.index ["email"], name: "index_users_on_email"
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
     t.index ["username"], name: "index_users_on_username"
   end
 

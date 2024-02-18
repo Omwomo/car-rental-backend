@@ -10,8 +10,8 @@
 #   end
 
 # Create Users
-user1 = User.create(email: 'b@gmail.com', username: 'jdoe123', first_name: 'John', last_name: 'Doe', city: 'Miami')
-user2 = User.create(email: 'c@gmail.com', username: 'janesmith89', first_name: 'Jane', last_name: 'Smith', city: 'San Francisco')
+user1 = User.create(username: 'jdoe123', first_name: 'John', last_name: 'Doe', city: 'Miami')
+user2 = User.create(username: 'janesmith89', first_name: 'Jane', last_name: 'Smith', city: 'San Francisco')
 
 # Create Items
 item1 = Item.create(admin: user1, name: 'Item 1', image: 'image_data_1', description: 'Description 1', city: 'Chicago', rates_per_day: 50, rates_per_hour: 10, availability_status: true, mileage: '10000 miles', fuel_type: 'Petrol', collision_cover: false)

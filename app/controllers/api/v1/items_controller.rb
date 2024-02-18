@@ -1,135 +1,56 @@
 class Api::V1::ItemsController < ApplicationController
-  # GET /api/v1/:username/items
+  before_action :set_api_item, only: %i[show destroy]
+
+  # GET /api/v1/items
   def index
-    per_page = params[:per_page] || 10
-    page = params[:page] || 1
-    query = params[:query]
-
-    @user = find_user_by_username(params[:user_username])
-
-    unless @user
-      render json: { error: "User with username '#{params[:user_username]}' not found." }, status: :not_found
-      return
+    @api_items = Item.all
+    if @api_items.present?
+      render json: { success: true, items: @api_items }
+    else
+      render json: { success: false, message: 'No items found' }
     end
-
-    @items = if query.present?
-               @user.items.search(query).includes(:reservations).paginate(page: page, per_page: per_page)
-             else
-               @user.items.includes(:reservations).paginate(page: page, per_page: per_page)
-             end
-
-    items_attributes = serialize_items(@items)
-
-    render json: {
-      status: { code: 200, message: 'Items retrieved successfully.' },
-      data: items_attributes,
-      meta: {
-        total_pages: @items.total_pages,
-        current_page: @items.current_page,
-        per_page: @items.per_page,
-        total_count: @items.total_entries
-      }
-    }, status: :ok
+  rescue StandardError => e
+    render json: { success: false, message: e.message }
   end
 
-  # GET /api/v1/:username/items/:id
+  # GET /api/v1/items/1
   def show
-    render json: {
-      status: { code: 200, message: 'Item retrieved successfully.' },
-      data: ItemSerializer.new(@item).serializable_hash[:data][:attributes]
-    }, status: :ok
-  end
-
-  # POST /api/v1/:username/items
-  def create
-    @item = Item.new(item_params.merge(admin_id: current_user.id))
-
-    if @item.save
-      render json: {
-        status: { code: 201, message: 'Item created successfully.' },
-        data: ItemSerializer.new(@item).serializable_hash[:data][:attributes]
-      }, status: :created
+    if @api_item.present?
+      render json: { success: true, item: @api_item }
     else
-      render json: {
-        status: 422,
-        message: 'Validation failed.',
-        errors: @item.errors.full_messages
-      }, status: :unprocessable_entity
+      render json: { success: false, message: 'Item not found' }
     end
   end
 
-  # PATCH/PUT /api/v1/:username/items/:id
-  def update
-    if @item.update(item_params)
-      render json: {
-        status: { code: 200, message: 'Item updated successfully.' },
-        data: ItemSerializer.new(@item).serializable_hash[:data][:attributes]
-      }, status: :ok
+  # POST /api/v1/items
+  def create
+    @api_item = Item.new(api_item_params)
+    if @api_item.save
+      render json: { success: true, item: @api_item }
     else
-      render json: {
-        status: 422,
-        message: 'Validation failed.',
-        errors: @item.errors.full_messages
-      }, status: :unprocessable_entity
+      render json: { success: false, message: @api_item.errors.full_messages }
     end
   end
 
   # DELETE /api/v1/items/:id
   def destroy
-    if @item.destroy
-      render json: {
-        status: { code: 200, message: 'Item deleted successfully.' }
-      }, status: :ok
+    if @api_item.destroy
+      render json: { success: true, message: 'Item deleted' }
     else
-      render json: {
-        status: 422,
-        message: 'Failed to delete item.',
-        errors: @item.errors.full_messages
-      }, status: :unprocessable_entity
+      render json: { success: false, message: @api_item.errors.full_messages }
     end
-  end
-
-  # GET /api/v1/items/:id/reservations
-  def reservations
-    @reservations = @item.reservations.includes(:customer).paginate(page: params[:page], per_page: params[:per_page])
-    reservations_attributes = serialize_reservations(@reservations)
-
-    render json: {
-      status: { code: 200, message: 'Reservations retrieved successfully.' },
-      data: reservations_attributes,
-      meta: {
-        total_pages: @reservations.total_pages,
-        current_page: @reservations.current_page,
-        per_page: @reservations.per_page,
-        total_count: @reservations.total_entries
-      }
-    }, status: :ok
   end
 
   private
 
-  def find_user_by_username(username)
-    User.find_by(username: username)
+  def set_api_item
+    @api_item = Item.find(params[:id])
+  rescue ActiveRecord::RecordNotFound
+    render json: { success: false, message: 'Item not found' }, status: :not_found
   end
 
-  def set_item
-    @item = Item.find(params[:id])
-  end
-
-  def item_params
-    params.require(:item).permit(
-      :name, :description, :image,
-      :city, :rates_per_day, :rates_per_hour,
-      :availability_status, :collision_cover,
-      :mileage, :fuel_type, reservation_id: []
-    )
-  end
-
-  def serialize_items(items)
-    if current_user&.admin?
-      items.map { |item| AdminItemSerializer.new(item).serializable_hash[:data][:attributes] }
-    else
-      items.map { |item| ItemSerializer.new(item).serializable_hash[:data][:attributes] }
-    end
+  def api_item_params
+    params.require(:item).permit(:name, :description, :image, :finance_fee, :purchase_fee, :total_amount, :duration,
+                                 :apr)
   end
 end
