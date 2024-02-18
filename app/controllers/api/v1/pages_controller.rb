@@ -1,12 +1,8 @@
 class Api::V1::PagesController < ApplicationController
-  # before_action :authenticate_user!, except: [:items]
-
-  # rescue_from CanCan::AccessDenied do |_exception|
-  #   render json: { error: 'Unauthorized' }, status: :unauthorized
-  # end
-
-  def index
-    # will serve as the root route
+  before_action :authenticate_user!, except: [:items]
+  respond_to :json
+  rescue_from CanCan::AccessDenied do |_exception|
+    render json: { error: 'Unauthorized' }, status: :unauthorized
   end
 
   def items
@@ -17,7 +13,7 @@ class Api::V1::PagesController < ApplicationController
 
     items = fetch_items(private_user, query).order(created_at: :desc)
 
-    paginated_items = items.paginate(page: page, per_page: per_page)
+    paginated_items = items.paginate(page:, per_page:)
     items_attributes = serialize_items(paginated_items, current_user&.admin?)
 
     render_response('Pages Items', items_attributes, paginated_items)
@@ -34,15 +30,18 @@ class Api::V1::PagesController < ApplicationController
   end
 
   def destroy_item
-    item = Item.find_by(id: params[:id])
-    if item.nil?
-      render json: { error: 'Item not found' }, status: :not_found
-    elsif authorized_to_delete_item?(item)
-      item.destroy
-      render json: {
-        status: { code: 200, message: 'Item deleted successfully.' },
-        data: ItemSerializer.new(item).serializable_hash[:data][:attributes]
-      }, status: :ok
+    if current_user&.admin?
+      item = Item.find_by(id: params[:id])
+      if item.nil?
+        render json: { error: 'Item not found' }, status: :not_found
+      else
+        item.destroy
+
+        render json: {
+          status: { code: 200, message: 'Item deleted successfully.' },
+          data: ItemSerializer.new(item).serializable_hash[:data][:attributes]
+        }, status: :ok
+      end
     else
       render json: { error: 'Unauthorized' }, status: :unauthorized
     end
@@ -51,10 +50,10 @@ class Api::V1::PagesController < ApplicationController
   def reservations
     per_page = params[:per_page] || 10
     page = params[:page] || 1
-    query = params[:query]
     private_user = params[:private_user] || false
+    query = params[:query]
 
-    reservations = if private_user
+    reservations = if current_user.admin? && private_user
                      Reservation.includes(:items)
                    elsif query.present?
                      Reservation.search(query)
@@ -62,7 +61,7 @@ class Api::V1::PagesController < ApplicationController
                      current_user.reservations.includes(:items)
                    end
 
-    paginated_reservations = reservations.order(created_at: :desc).paginate(page: page, per_page: per_page)
+    paginated_reservations = reservations.order(created_at: :desc).paginate(page:, per_page:)
     reservation_attributes = serialize_reservations(paginated_reservations)
 
     render_response('Reservations', reservation_attributes, paginated_reservations)
@@ -79,7 +78,7 @@ class Api::V1::PagesController < ApplicationController
               User.all
             end
 
-    paginated_users = users.paginate(page: page, per_page: per_page)
+    paginated_users = users.paginate(page:, per_page:)
     user_attributes = serialize_users(paginated_users)
 
     render_response('Users', user_attributes, paginated_users)
@@ -90,17 +89,17 @@ class Api::V1::PagesController < ApplicationController
     per_page = params[:per_page] || 10
     page = params[:page] || 1
 
-    items = Item.search(query).order(created_at: :desc).paginate(page: page, per_page: per_page)
+    items = Item.search(query).order(created_at: :desc).paginate(page:, per_page:)
 
-    reservations = Reservation.search(query).paginate(page: page, per_page: per_page)
+    reservations = Reservation.search(query).paginate(page:, per_page:)
 
-    users = User.search(query).paginate(page: page, per_page: per_page)
+    users = User.search(query).paginate(page:, per_page:)
 
     all_results = items + reservations + users
 
     serialize_results(all_results)
 
-    paginated_reservations = reservations.paginate(page: page, per_page: per_page)
+    paginated_reservations = reservations.paginate(page:, per_page:)
     attributes = serialize_results(all_results)
     render_response('Search result', attributes, paginated_reservations)
   end
@@ -132,7 +131,7 @@ class Api::V1::PagesController < ApplicationController
   def render_response(message, data, paginated_data)
     render json: {
       status: { code: 200, message: "#{message} retrieved successfully." },
-      data: data, # Fix the missing data
+      data:,
       meta: {
         total_pages: paginated_data.total_pages,
         current_page: paginated_data.current_page,

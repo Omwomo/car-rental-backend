@@ -1,21 +1,21 @@
 class Api::V1::ItemsController < ApplicationController
+  before_action :set_item, only: %i[show update destroy]
+  before_action :set_user, only: [:index]
+
+  rescue_from CanCan::AccessDenied do |_exception|
+    render json: { error: 'Unauthorized' }, status: :unauthorized
+  end
+
   # GET /api/v1/:username/items
   def index
     per_page = params[:per_page] || 10
     page = params[:page] || 1
     query = params[:query]
 
-    @user = find_user_by_username(params[:user_username])
-
-    unless @user
-      render json: { error: "User with username '#{params[:user_username]}' not found." }, status: :not_found
-      return
-    end
-
     @items = if query.present?
-               @user.items.search(query).includes(:reservations).paginate(page: page, per_page: per_page)
+               @user.items.search(query).includes(:reservations).paginate(page:, per_page:)
              else
-               @user.items.includes(:reservations).paginate(page: page, per_page: per_page)
+               @user.items.includes(:reservations).paginate(page:, per_page:)
              end
 
     items_attributes = serialize_items(@items)
@@ -108,8 +108,14 @@ class Api::V1::ItemsController < ApplicationController
 
   private
 
-  def find_user_by_username(username)
-    User.find_by(username: username)
+  def set_user
+    username = params[:user_username]
+
+    @user = User.find_by(username:)
+
+    return if @user
+
+    render json: { error: "User with username '#{username}' not found." }, status: :not_found
   end
 
   def set_item
@@ -119,14 +125,14 @@ class Api::V1::ItemsController < ApplicationController
   def item_params
     params.require(:item).permit(
       :name, :description, :image,
-      :city, :rates_per_day, :rates_per_hour,
-      :availability_status, :collision_cover,
-      :mileage, :fuel_type, reservation_id: []
+      :city, :finance_fee, :option_to_purchase_fee,
+      :total_amount_payable,
+      :duration, :apr_representative, reservation_id: []
     )
   end
 
   def serialize_items(items)
-    if current_user&.admin?
+    if current_user.admin?
       items.map { |item| AdminItemSerializer.new(item).serializable_hash[:data][:attributes] }
     else
       items.map { |item| ItemSerializer.new(item).serializable_hash[:data][:attributes] }

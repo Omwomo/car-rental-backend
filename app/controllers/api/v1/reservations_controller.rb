@@ -1,6 +1,11 @@
 class Api::V1::ReservationsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_reservation, only: %i[show update destroy add_item remove_item]
   before_action :set_user, only: %i[index show create update destroy]
+
+  rescue_from CanCan::AccessDenied do |_exception|
+    render json: { error: 'Unauthorized' }, status: :unauthorized
+  end
 
   # GET /api/v1/:username/reservations
   def index
@@ -13,7 +18,7 @@ class Api::V1::ReservationsController < ApplicationController
 
     page = params[:page] || 1
     per_page = params[:per_page] || 10
-    paginated_reservations = reservations.paginate(page: page, per_page: per_page)
+    paginated_reservations = reservations.paginate(page:, per_page:)
 
     serialized_reservations = paginated_reservations.map do |reservation|
       ReservationSerializer.new(reservation).serializable_hash[:data][:attributes]
@@ -36,7 +41,7 @@ class Api::V1::ReservationsController < ApplicationController
     page = params[:page] || 1
     per_page = params[:per_page] || 10
 
-    items = @reservation.items.order(created_at: :desc).paginate(page: page, per_page: per_page)
+    items = @reservation.items.order(created_at: :desc).paginate(page:, per_page:)
     serialized_items = items.map { |item| ItemSerializer.new(item).serializable_hash[:data][:attributes] }
 
     render json: {
@@ -143,11 +148,15 @@ class Api::V1::ReservationsController < ApplicationController
   def set_user
     username = params[:user_username]
 
-    @user = User.find_by(username: username)
+    @user = User.find_by(username:)
 
     return if @user
 
     render json: { error: "User with username '#{username}' not found." }, status: :not_found
+  end
+
+  def authorize_admin
+    current_user.admin?
   end
 
   def set_reservation

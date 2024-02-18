@@ -1,5 +1,9 @@
 class Api::V1::UsersController < ApplicationController
-  # NOTE: Bhushan you will add authentication logic here
+  before_action :authenticate_user!
+
+  rescue_from CanCan::AccessDenied do |_exception|
+    render json: { error: 'Unauthorized' }, status: :unauthorized
+  end
 
   # GET /api/v1/users
   def index
@@ -28,7 +32,7 @@ class Api::V1::UsersController < ApplicationController
     end
   end
 
-  # GET /api/v1/users/my_profile
+  # Get /api/v1/users/my_profile
   def my_profile
     render json: {
       status: { code: 200, message: 'User information retrieved successfully.' },
@@ -75,7 +79,7 @@ class Api::V1::UsersController < ApplicationController
   # /api/v1/:username/remove_admin
   def make_admin
     @user = User.find_by(username: params[:username])
-    # Authorization logic is removed for simplicity
+    authorize! :make_admin, @user
     if @user
       @user.update(admin: true)
       render json: { message: "#{@user.username} is now an admin." }
@@ -87,7 +91,7 @@ class Api::V1::UsersController < ApplicationController
   # /api/v1/:username/remove_admin
   def remove_admin
     @user = User.find_by(username: params[:username])
-    # Authorization logic for can can needed
+    authorize! :remove_admin, @user
     if @user
       @user.update(admin: false)
       render json: { message: "#{@user.username} is no longer an admin." }
@@ -99,12 +103,10 @@ class Api::V1::UsersController < ApplicationController
   private
 
   def authorize_user(user)
-    # Authorization logic for can can needed
     user == current_user
   end
 
   def user_params
-    # You will add neccesary params like email after addind devise
-    params.require(:user).permit(:first_name, :last_name, :city)
+    params.require(:user).permit(:first_name, :last_name, :city, :email)
   end
 end
