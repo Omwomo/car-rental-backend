@@ -14,6 +14,12 @@ Rails.application.routes.draw do
     registrations: 'users/registrations'
   }
 
+  Rails.application.routes.draw do
+    devise_for :users, controllers: {
+      sessions: 'users/sessions'
+    }
+  end
+
   namespace :api do
     namespace :v1 do
       resources :users, only: [:index, :show, :create, :destroy]
