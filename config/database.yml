@@ -3,18 +3,18 @@ default: &default
   encoding: unicode
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   username: postgres
-  password: 1234
+  password: 11223344
   host: localhost
   port: 5432
 
 development:
   <<: *default
-  database: booking_cap_db
+  database: fullstackbackend
   
 test:
   <<: *default
-  database: booking_cap_db
+  database: fullstackbackend
 
 production:
   <<: *default
-  database: booking_cap_db
+  database: fullstackbackend
