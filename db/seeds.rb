@@ -9,21 +9,23 @@
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
 
-# Create Users
-user1 = User.create(username: 'jdoe123', first_name: 'John', last_name: 'Doe', city: 'Miami')
-user2 = User.create(username: 'janesmith89', first_name: 'Jane', last_name: 'Smith', city: 'San Francisco')
+# Create admin user
+admin = User.create(username: 'admin', first_name: 'Admin', last_name: 'User', city: 'AnyCity', email: 'admin@example.com', password: 'password')
+
+# Create regular users
+user1 = User.create(username: 'john_doe', first_name: 'John', last_name: 'Doe', city: 'New York')
+user2 = User.create(username: 'jane_smith', first_name: 'Jane', last_name: 'Smith', city: 'Los Angeles')
 
 # Create Items
-item1 = Item.create(admin: user1, name: 'Item 1', image: 'image_data_1', description: 'Description 1', city: 'Chicago', rates_per_day: 50, rates_per_hour: 10, availability_status: true, mileage: '10000 miles', fuel_type: 'Petrol', collision_cover: false)
-item2 = Item.create(admin: user1, name: 'Item 2', image: 'image_data_2', description: 'Description 2', city: 'Los Angeles', rates_per_day: 60, rates_per_hour: 12, availability_status: true, mileage: '12000 miles', fuel_type: 'Diesel', collision_cover: true)
-item3 = Item.create(admin: user2, name: 'Item 3', image: 'image_data_3', description: 'Description 3', city: 'Seattle', rates_per_day: 45, rates_per_hour: 8, availability_status: true, mileage: '8000 miles', fuel_type: 'Electric', collision_cover: false)
+item1 = Item.create(admin: admin, name: 'Item 1', image: 'image_data_1', description: 'Description 1', city: 'Chicago', admin_id: '1')
+item2 = Item.create(admin: admin, name: 'Item 2', image: 'image_data_2', description: 'Description 2', city: 'San Francisco', admin_id: '1')
+item3 = Item.create(admin: admin, name: 'Item 3', image: 'image_data_3', description: 'Description 3', city: 'Seattle', admin_id: '1')
 
 # Create Reservations
-reservation1 = Reservation.create(customer: user2, reserve_for_use_date: Date.today, city: 'San Francisco')
-reservation2 = Reservation.create(customer: user1, reserve_for_use_date: Date.tomorrow, city: 'Miami')
+reservation1 = Reservation.create(customer: user2, reserve_for_use_date: Date.today, city: 'Los Angeles', customer_id: '1')
+reservation2 = Reservation.create(customer: user1, reserve_for_use_date: Date.tomorrow, city: 'New York', customer_id: '1')
 
 # Create ReservationItems
 ReservationItem.create(reservation: reservation1, item: item1)
 ReservationItem.create(reservation: reservation1, item: item2)
 ReservationItem.create(reservation: reservation2, item: item3)
-puts "seeds data created successfully"
