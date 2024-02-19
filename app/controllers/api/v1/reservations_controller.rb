@@ -3,15 +3,18 @@ module Api
     class ReservationsController < ApplicationController
       before_action :set_reservation, only: %i[show destroy]
 
+      # /api/v1/reservations
       def index
         @reservations = Reservation.all
         render json: @reservations
       end
 
+      # /api/v1/reservations/:id
       def show
         render json: { reservation: @reservation, item: @reservation.item }
       end
 
+      # /api/v1/reservations
       def create
         @reservation = Reservation.new(reservation_params)
 
@@ -24,6 +27,7 @@ module Api
         render json: { error: e.message }, status: :internal_server_error
       end
 
+      # /api/v1/reservations/:id
       def destroy
         if @reservation.destroy
           render json: { success: true, message: 'Reservation destroyed' }
