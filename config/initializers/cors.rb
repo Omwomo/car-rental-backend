@@ -9,9 +9,10 @@
 
 Rails.application.config.middleware.insert_before 0, Rack::Cors do
   allow do
-    # change example.com from here to api eg: 127.0.0.1/api/v1/greetings
-    origins 'example.com'
+    # Allow all origins to access your APIs.
+    origins '*'
 
+    # Allow all HTTP methods and headers.
     resource '*',
              headers: :any,
              methods: %i[get post put patch delete options head]
