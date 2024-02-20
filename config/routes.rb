@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   root to: 'api/v1/users#index'
 
-  get '/current_user', to: 'current_user#index'
+  get '/current_user', to: 'api/v1/users#my_profile'
   match '/logout', to: 'users/sessions#destroy', via: [:get, :delete]
 
   devise_for :users, path: '', path_names: {
