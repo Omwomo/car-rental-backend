@@ -1,8 +1,18 @@
 class Users::RegistrationsController < Devise::RegistrationsController
-  include RackSessionFix
+  before_action :configure_sign_up_params, only: [:create]
+  before_action :configure_account_update_params, only: [:update]
+
   respond_to :json
 
-  private
+  protected
+
+  def configure_sign_up_params
+    devise_parameter_sanitizer.permit(:sign_up, keys: %i[username first_name last_name city email])
+  end
+
+  def configure_account_update_params
+    devise_parameter_sanitizer.permit(:account_update, keys: %i[first_name last_name city])
+  end
 
   def respond_with(resource, _opts = {})
     if request.method == 'POST' && resource.persisted?
@@ -16,7 +26,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
       }, status: :ok
     else
       render json: {
-        status: { code: 422, message: "User not created. #{resource.errors.full_messages.to_sentence}" }
+        status: {
+          code: 422,
+          message: "User couldn't be created successfully. #{resource.errors.full_messages.to_sentence}"
+        }
       }, status: :unprocessable_entity
     end
   end
