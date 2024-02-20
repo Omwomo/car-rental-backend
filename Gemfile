@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-ruby '3.3.0'
+ruby '3.0.2'
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem 'rails', '~> 7.1.3'
@@ -52,4 +52,5 @@ gem 'rubocop', '>= 1.0', '< 2.0'
 # rake-cors gem is to allow api to react application
 gem 'cancancan'
 gem 'devise'
+gem 'devise-jwt'
 gem 'rack-cors', require: 'rack/cors'

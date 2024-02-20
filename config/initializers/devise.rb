@@ -14,7 +14,7 @@ Devise.setup do |config|
   # confirmation, reset password and unlock tokens in the database.
   # Devise will use the `secret_key_base` as its `secret_key`
   # by default. You can change it below and use your own secret key.
-  # config.secret_key = '5d342984f7aa7bfbae77d4b50d33d1e5dcf254611e1aa152d3c86d06aa3371b75474e339cb31d325e7a78f818cb2bbb5e1bdb0ea547b5941301b6713ebe8b6ce'
+  # config.secret_key = '4045c215144eb3c303b634766891f19303fdc916c761aff26cd59111b395092e78a0f45643cd95803937e3541ad25fcd7fe9a54f7a1d07ecd59ea91fd64dde8d'
 
   # ==> Controller configuration
   # Configure the parent class to the devise controllers.
@@ -126,7 +126,7 @@ Devise.setup do |config|
   config.stretches = Rails.env.test? ? 1 : 12
 
   # Set up a pepper to generate the hashed password.
-  # config.pepper = '64f178e64ffad3e1fd0713a41ba72ed546cd160866baf82343e8828ad8420c41913e5ae3b96136a380867a43c200f9d03db2d77b106b4d4d829d54852c75ed9a'
+  # config.pepper = 'c76da35f3c29a9d8200edeca817da49ad6d801f565ce4713c0e84a8a89d09c06d16724607026082b1ffcbb85abe37c0796cc67974a18ac61228ba54e57ae4087'
 
   # Send a notification to the original email when the user's email is changed.
   # config.send_email_changed_notification = false
@@ -263,7 +263,7 @@ Devise.setup do |config|
   # should add them to the navigational formats lists.
   #
   # The "*/*" below is required to match Internet Explorer requests.
-  # config.navigational_formats = ['*/*', :html, :turbo_stream]
+  config.navigational_formats = []
 
   # The default HTTP method used to sign out a resource. Default is :delete.
   config.sign_out_via = :delete
@@ -304,7 +304,16 @@ Devise.setup do |config|
   # Note: These might become the new default in future versions of Devise.
   config.responder.error_status = :unprocessable_entity
   config.responder.redirect_status = :see_other
-
+  config.jwt do |jwt|
+    jwt.secret = Rails.application.credentials.secret_key_base if Rails.application.credentials.secret_key_base.present?
+    jwt.dispatch_requests = [
+      ['POST', %r{^/login$}]
+    ]
+    jwt.revocation_requests = [
+      ['DELETE', %r{^/logout$}]
+    ]
+    jwt.expiration_time = 30.minutes.to_i
+  end
   # ==> Configuration for :registerable
 
   # When set to false, does not sign a user in automatically after their password is
