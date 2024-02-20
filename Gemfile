@@ -52,5 +52,5 @@ gem 'rubocop', '>= 1.0', '< 2.0'
 # rake-cors gem is to allow api to react application
 gem 'cancancan'
 gem 'devise'
-gem 'rack-cors', require: 'rack/cors'
 gem 'devise-jwt'
+gem 'rack-cors', require: 'rack/cors'
