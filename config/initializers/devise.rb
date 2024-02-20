@@ -14,8 +14,7 @@ Devise.setup do |config|
   # confirmation, reset password and unlock tokens in the database.
   # Devise will use the `secret_key_base` as its `secret_key`
   # by default. You can change it below and use your own secret key.
-  # config.secret_key = '4045c215144eb3c303b634766891f19303fdc916c761aff26cd59111b395092e78a0f45643cd95803937e3541ad25fcd7fe9a54f7a1d07ecd59ea91fd64dde8d'
-
+  # config.secret_key = ENV['SECRET_KEY']
   # ==> Controller configuration
   # Configure the parent class to the devise controllers.
   # config.parent_controller = 'DeviseController'
@@ -46,7 +45,7 @@ Devise.setup do |config|
   # session. If you need permissions, you should implement that in a before filter.
   # You can also supply a hash where the value is a boolean determining whether
   # or not authentication should be aborted when the value is not present.
-  # config.authentication_keys = [:email]
+   config.authentication_keys = [:email]
 
   # Configure parameters from the request object used for authentication. Each entry
   # given should be a request method and it will automatically be passed to the
@@ -63,7 +62,7 @@ Devise.setup do |config|
   # Configure which authentication keys should have whitespace stripped.
   # These keys will have whitespace before and after removed upon creating or
   # modifying a user and when used to authenticate or find a user. Default is :email.
-  config.strip_whitespace_keys = [:email]
+  config.strip_whitespace_keys = [:email, :username]
 
   # Tell if authentication through request.params is enabled. True by default.
   # It can be set to an array that will enable params authentication only for the
@@ -126,7 +125,7 @@ Devise.setup do |config|
   config.stretches = Rails.env.test? ? 1 : 12
 
   # Set up a pepper to generate the hashed password.
-  # config.pepper = 'c76da35f3c29a9d8200edeca817da49ad6d801f565ce4713c0e84a8a89d09c06d16724607026082b1ffcbb85abe37c0796cc67974a18ac61228ba54e57ae4087'
+  # config.pepper = ENV['DEVISE_PEPPER'] 
 
   # Send a notification to the original email when the user's email is changed.
   # config.send_email_changed_notification = false
@@ -263,10 +262,20 @@ Devise.setup do |config|
   # should add them to the navigational formats lists.
   #
   # The "*/*" below is required to match Internet Explorer requests.
+  #config.navigational_formats = ['*/*', :html, :turbo_stream]
+  # config.navigational_formats = [:json]
   config.navigational_formats = []
 
   # The default HTTP method used to sign out a resource. Default is :delete.
   config.sign_out_via = :delete
+  
+  config.jwt do |jwt|
+    jwt.secret = "90fc66e5dee8908874c449d95d604c3c70af63e3b382877efa26b94c3726c1a6fdbfaa5b3137b9c664a2a2d2fd20efded69799ecf6d3ed46e70649a68a476ab7"
+    jwt.dispatch_requests = [['POST', %r{^/login$}]]
+    jwt.revocation_requests = [['DELETE', %r{^/logout$}]]
+    jwt.expiration_time = 1.day.to_i
+  end
+
 
   # ==> OmniAuth
   # Add a new OmniAuth provider. Check the wiki for more information on setting
@@ -304,16 +313,7 @@ Devise.setup do |config|
   # Note: These might become the new default in future versions of Devise.
   config.responder.error_status = :unprocessable_entity
   config.responder.redirect_status = :see_other
-  config.jwt do |jwt|
-    jwt.secret = Rails.application.credentials.secret_key_base if Rails.application.credentials.secret_key_base.present?
-    jwt.dispatch_requests = [
-      ['POST', %r{^/login$}]
-    ]
-    jwt.revocation_requests = [
-      ['DELETE', %r{^/logout$}]
-    ]
-    jwt.expiration_time = 30.minutes.to_i
-  end
+
   # ==> Configuration for :registerable
 
   # When set to false, does not sign a user in automatically after their password is

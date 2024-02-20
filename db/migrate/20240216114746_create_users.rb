@@ -5,6 +5,7 @@ class CreateUsers < ActiveRecord::Migration[7.1]
       t.string :first_name
       t.string :last_name
       t.string :city
+      t.boolean :admin, default: false
 
       t.timestamps
     end

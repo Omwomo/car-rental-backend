@@ -23,6 +23,14 @@ class Api::V1::UsersController < ApplicationController
     end
   end
 
+  # Get /api/v1/users/my_profile
+  def my_profile
+    render json: {
+      status: { code: 200, message: 'User information retrieved successfully.' },
+      data: UserSerializer.new(current_user).serializable_hash[:data][:attributes]
+    }, status: :ok
+  end
+
   # POST /api/v1/users
   def create
     @api_user = User.new(api_user_params)

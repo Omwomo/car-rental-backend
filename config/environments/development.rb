@@ -1,6 +1,4 @@
-# frozen_string_literal: true
-
-require 'active_support/core_ext/integer/time'
+require "active_support/core_ext/integer/time"
 
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
@@ -21,10 +19,10 @@ Rails.application.configure do
 
   # Enable/disable caching. By default caching is disabled.
   # Run rails dev:cache to toggle caching.
-  if Rails.root.join('tmp/caching-dev.txt').exist?
+  if Rails.root.join("tmp/caching-dev.txt").exist?
     config.cache_store = :memory_store
     config.public_file_server.headers = {
-      'Cache-Control' => "public, max-age=#{2.days.to_i}"
+      "Cache-Control" => "public, max-age=#{2.days.to_i}"
     }
   else
     config.action_controller.perform_caching = false
@@ -58,6 +56,7 @@ Rails.application.configure do
   # Highlight code that enqueued background job in logs.
   config.active_job.verbose_enqueue_logs = true
 
+
   # Raises error for missing translations.
   # config.i18n.raise_on_missing_translations = true
 
@@ -69,4 +68,27 @@ Rails.application.configure do
 
   # Raise error when a before_action's only/except options reference missing actions
   config.action_controller.raise_on_missing_callback_actions = true
+  
+  
+  
+    
+  
+  
+  # Configuration for ActionMailer using SendGrid
+  
+  # config.action_mailer.delivery_method = :smtp
+  # config.action_mailer.smtp_settings = {
+  #address: 'smtp.sendgrid.net',
+  #port: 587,
+  #domain: 'your-production-domain.com',
+  #user_name: ENV['SENDGRID_USERNAME'], #use apikey
+  #password: ENV['SENDGRID_PASSWORD'],
+  #authentication: :plain,
+  #enable_starttls_auto: true,
+#}
+
+
+config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+
+
 end
