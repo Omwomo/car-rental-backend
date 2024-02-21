@@ -50,6 +50,7 @@ class Api::V1::ItemsController < ApplicationController
   end
 
   def api_item_params
-    params.require(:item).permit( :name, :description, :image, :city, :finance_fee, :total_amount_payable, :duration, :apr_representative, :option_to_purchase_fee, :admin_id)
+    params.require(:item).permit(:name, :description, :image, :city, :finance_fee, :total_amount_payable, :duration,
+                                 :apr_representative, :option_to_purchase_fee, :admin_id)
   end
 end
