@@ -1,5 +1,5 @@
 class Api::V1::ItemsController < ApplicationController
-  # before_action :set_api_item, only: %i[show destroy]
+  before_action :set_api_item, only: %i[show destroy]
 
   # GET /api/v1/items
   def index
