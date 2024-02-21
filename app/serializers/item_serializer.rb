@@ -1,4 +1,4 @@
 class ItemSerializer
   include JSONAPI::Serializer
-  attributes :name, :description, :image, :city, :finance_fee, :total_amount_payable, :duration, :apr_representative
+  attributes :name, :description, :image, :city, :financeFee, :totalAmount, :purchaseFee, :duration, :apr
 end

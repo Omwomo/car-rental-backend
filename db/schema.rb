@@ -17,16 +17,16 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_21_083447) do
   create_table "items", force: :cascade do |t|
     t.bigint "admin_id", null: false
     t.string "name"
-    t.binary "image"
+    t.string "image"
     t.text "description"
     t.string "city"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.decimal "finance_fee", precision: 10, scale: 2
-    t.decimal "option_to_purchase_fee", precision: 10, scale: 2
-    t.decimal "total_amount_payable", precision: 10, scale: 2
+    t.decimal "financeFee", precision: 10, scale: 2
+    t.decimal "purchaseFee", precision: 10, scale: 2
+    t.decimal "totalAmount", precision: 10, scale: 2
     t.integer "duration"
-    t.decimal "apr_representative", precision: 5, scale: 2
+    t.decimal "apr", precision: 5, scale: 2
     t.index ["admin_id"], name: "index_items_on_admin_id"
   end
 
