@@ -7,11 +7,11 @@ class Users::RegistrationsController < Devise::RegistrationsController
   protected
 
   def configure_sign_up_params
-    devise_parameter_sanitizer.permit(:sign_up, keys: %i[username first_name last_name city email])
+    devise_parameter_sanitizer.permit(:sign_up, keys: %i[username firstName lastName city email])
   end
 
   def configure_account_update_params
-    devise_parameter_sanitizer.permit(:account_update, keys: %i[first_name last_name city])
+    devise_parameter_sanitizer.permit(:account_update, keys: %i[firstName lastName city])
   end
 
   def respond_with(resource, _opts = {})
