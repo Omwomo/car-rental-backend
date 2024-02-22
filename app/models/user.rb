@@ -2,7 +2,7 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   has_many :reservations, foreign_key: 'customer_id'
-  has_many :items, foreign_key: 'admin_id'
+  has_many :items, foreign_key: 'adminId'
   attribute :firstName, :string
   attribute :lastName, :string
 

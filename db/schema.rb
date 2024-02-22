@@ -10,12 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_02_21_083447) do
+ActiveRecord::Schema[7.1].define(version: 2024_02_21_192254) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "items", force: :cascade do |t|
-    t.bigint "admin_id", null: false
+    t.bigint "adminId", null: false
     t.string "name"
     t.string "image"
     t.text "description"
@@ -27,7 +27,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_21_083447) do
     t.decimal "totalAmount", precision: 10, scale: 2
     t.integer "duration"
     t.decimal "apr", precision: 5, scale: 2
-    t.index ["admin_id"], name: "index_items_on_admin_id"
+    t.index ["adminId"], name: "index_items_on_adminId"
   end
 
   create_table "reservation_items", force: :cascade do |t|
@@ -69,7 +69,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_21_083447) do
     t.index ["username"], name: "index_users_on_username"
   end
 
-  add_foreign_key "items", "users", column: "admin_id"
+  add_foreign_key "items", "users", column: "adminId"
   add_foreign_key "reservation_items", "items"
   add_foreign_key "reservation_items", "reservations"
   add_foreign_key "reservations", "users", column: "customer_id"

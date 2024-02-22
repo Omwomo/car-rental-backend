@@ -17,9 +17,9 @@ user1 = User.create(username: 'john_doe', firstName: 'John', lastName: 'Doe', ci
 user2 = User.create(username: 'jane_smith', firstName: 'Jane', lastName: 'Smith', city: 'Los Angeles')
 
 # Create Items
-item1 = Item.create(admin: admin, name: 'Item 1', image: 'image_data_1', description: 'Description 1', city: 'Chicago', admin_id: '1')
-item2 = Item.create(admin: admin, name: 'Item 2', image: 'image_data_2', description: 'Description 2', city: 'San Francisco', admin_id: '1')
-item3 = Item.create(admin: admin, name: 'Item 3', image: 'image_data_3', description: 'Description 3', city: 'Seattle', admin_id: '1')
+item1 = Item.create(admin: admin, name: 'Item 1', image: 'image_data_1', description: 'Description 1', city: 'Chicago', adminId: '1')
+item2 = Item.create(admin: admin, name: 'Item 2', image: 'image_data_2', description: 'Description 2', city: 'San Francisco', adminId: '1')
+item3 = Item.create(admin: admin, name: 'Item 3', image: 'image_data_3', description: 'Description 3', city: 'Seattle', adminId: '1')
 
 # Create Reservations
 reservation1 = Reservation.create(customer: user2, reserve_for_use_date: Date.today, city: 'Los Angeles', customer_id: '1')
