@@ -9,11 +9,11 @@ default: &default
 
 development:
   <<: *default
-  database: booking_cap_db
+  database: booking
 test:
   <<: *default
-  database: booking_cap_db
+  database: booking
 
 production:
   <<: *default
-  database: booking_cap_db
+  database: booking
