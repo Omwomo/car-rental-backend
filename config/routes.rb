@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  mount Rswag::Ui::Engine => '/api-docs'
+  mount Rswag::Api::Engine => '/api-docs'
   root to: 'api/v1/users#index'
 
   get '/current_user', to: 'api/v1/users#my_profile'
