@@ -1,96 +1,116 @@
 require 'swagger_helper'
 
-RSpec.describe 'api/v1/users', type: :request do
-  path '/' do
-    get('list users') do
-      response(200, 'successful') do
-        after do |example|
-          example.metadata[:response][:content] = {
-            'application/json' => {
-              example: JSON.parse(response.body, symbolize_names: true)
-            }
-          }
-        end
-        run_test!
-      end
-    end
-  end
-
-  path '/current_user' do
-    get('my_profile user') do
-      response(200, 'successful') do
-        after do |example|
-          example.metadata[:response][:content] = {
-            'application/json' => {
-              example: JSON.parse(response.body, symbolize_names: true)
-            }
-          }
-        end
-        run_test!
-      end
-    end
-  end
-
+RSpec.describe 'Api::V1::Users', type: :request do
+  # rubocop:disable Metrics/BlockLength
   path '/api/v1/users' do
     get('list users') do
-      response(200, 'successful') do
-        after do |example|
-          example.metadata[:response][:content] = {
-            'application/json' => {
-              example: JSON.parse(response.body, symbolize_names: true)
-            }
-          }
+      tags 'Users'
+      produces 'application/json'
+      response(200, 'All users fetched') do
+        description 'All users fetched successfully'
+        schema type: :object,
+               properties: {
+                 success: { type: :boolean },
+                 users: {
+                   type: :array,
+                   items: {
+                     type: :object,
+                     properties: {
+                       id: { type: :integer },
+                       name: { type: :string },
+                       email: { type: :string }
+                       # Add other properties as needed
+                     },
+                     required: %w[id name email]
+                   }
+                 }
+               }
+
+        let(:id) do
+          User.create(name: 'John', email: 'john@example.com', password: 'password',
+                      password_confirmation: 'password').id
         end
         run_test!
       end
     end
 
     post('create user') do
-      response(200, 'successful') do
-        after do |example|
-          example.metadata[:response][:content] = {
-            'application/json' => {
-              example: JSON.parse(response.body, symbolize_names: true)
-            }
-          }
+      tags 'Users'
+      consumes 'application/json'
+      parameter name: :user, in: :body, schema: {
+        type: :object,
+        properties: {
+          name: { type: :string },
+          email: { type: :string },
+          password: { type: :string },
+          password_confirmation: { type: :string }
+        },
+        required: %w[name email password password_confirmation]
+      }
+
+      response(201, 'User created') do
+        let(:user) do
+          { name: 'Alice', email: 'alice@example.com', password: 'password',
+            password_confirmation: 'password' }
         end
+        run_test!
+      end
+
+      response(422, 'Invalid request') do
+        let(:user) { { name: 'Bob', email: 'bob@example.com', password: 'password' } }
         run_test!
       end
     end
   end
 
   path '/api/v1/users/{id}' do
-    # You'll want to customize the parameter types...
     parameter name: 'id', in: :path, type: :string, description: 'id'
 
     get('show user') do
-      response(200, 'successful') do
-        let(:id) { '123' }
+      tags 'Users'
+      produces 'application/json'
+      response(200, 'User fetched') do
+        description 'User fetched successfully'
+        schema type: :object,
+               properties: {
+                 success: { type: :boolean },
+                 users: {
+                   type: :array,
+                   items: {
+                     type: :object,
+                     properties: {
+                       id: { type: :integer },
+                       name: { type: :string },
+                       email: { type: :string }
+                     },
+                     required: %w[id name email]
+                   }
+                 }
+               }
 
-        after do |example|
-          example.metadata[:response][:content] = {
-            'application/json' => {
-              example: JSON.parse(response.body, symbolize_names: true)
-            }
-          }
+        let(:id) do
+          User.create(name: 'John', email: 'john@example.com', password: 'password',
+                      password_confirmation: 'password').id
         end
+        run_test!
+      end
+
+      response(404, 'User not found') do
+        let(:id) { 'invalid' }
         run_test!
       end
     end
 
     delete('delete user') do
-      response(200, 'successful') do
-        let(:id) { '123' }
-
-        after do |example|
-          example.metadata[:response][:content] = {
-            'application/json' => {
-              example: JSON.parse(response.body, symbolize_names: true)
-            }
-          }
+      tags 'Users'
+      response(200, 'User deleted') do
+        let(:id) do
+          User.create(name: 'John', email: 'john@example.com', password: 'password',
+                      password_confirmation: 'password').id
         end
         run_test!
       end
     end
   end
+  # rubocop:enable Metrics/BlockLength
 end
