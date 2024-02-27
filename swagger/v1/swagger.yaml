@@ -1,0 +1,407 @@
+---
+openapi: 3.0.1
+info:
+  title: API V1
+  version: v1
+paths:
+  "/api/v1/items":
+    get:
+      summary: list items
+      tags:
+      - Items
+      description: All items fetched successfully
+      responses:
+        '200':
+          description: All items fetched
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: array
+                    items:
+                      type: string
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                        name:
+                          type: string
+                        description:
+                          type: string
+                        image:
+                          type: string
+                        city:
+                          type: string
+                        financeFee:
+                          type: integer
+                        totalAmount:
+                          type: integer
+                        duration:
+                          type: integer
+                        apr:
+                          type: float
+                        purchaseFee:
+                          type: float
+                        adminId:
+                          type: integer
+                      required:
+                      - id
+                      - name
+                      - description
+                      - image
+                      - city
+                      - financeFee
+                      - totalAmount
+                      - duration
+                      - apr
+                      - purchaseFee
+                      - adminId
+    post:
+      summary: create item
+      tags:
+      - Items
+      parameters: []
+      responses:
+        '200':
+          description: successful
+        '422':
+          description: invalid request
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                description:
+                  type: string
+                image:
+                  type: string
+                city:
+                  type: string
+                financeFee:
+                  type: integer
+                totalAmount:
+                  type: integer
+                duration:
+                  type: integer
+                apr:
+                  type: float
+                purchaseFee:
+                  type: float
+                adminId:
+                  type: integer
+              required:
+              - name
+              - description
+              - image
+              - city
+              - financeFee
+              - totalAmount
+              - duration
+              - apr
+              - purchaseFee
+              - adminId
+  "/api/v1/items/{id}":
+    parameters:
+    - name: id
+      in: path
+      description: id
+      required: true
+      schema:
+        type: string
+    get:
+      summary: show item
+      tags:
+      - Items
+      description: car retrieved succesfully
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: array
+                    items:
+                      type: string
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                        name:
+                          type: string
+                        description:
+                          type: string
+                        image:
+                          type: string
+                        city:
+                          type: string
+                        financeFee:
+                          type: integer
+                        totalAmount:
+                          type: integer
+                        duration:
+                          type: integer
+                        apr:
+                          type: float
+                        purchaseFee:
+                          type: float
+                        adminId:
+                          type: integer
+                      required:
+                      - id
+                      - name
+                      - description
+                      - image
+                      - city
+                      - financeFee
+                      - totalAmount
+                      - duration
+                      - apr
+                      - purchaseFee
+                      - adminId
+        '404':
+          description: item not found
+    delete:
+      summary: delete item
+      tags:
+      - Items
+      responses:
+        '200':
+          description: successful
+  "/api/v1/reservations":
+    get:
+      summary: list reservations
+      tags:
+      - Reservations
+      description: All reservations fetched successfully
+      responses:
+        '200':
+          description: All reservations fetched
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                    date:
+                      type: string
+                      format: date
+                    city:
+                      type: string
+                    user_id:
+                      type: integer
+                    item_id:
+                      type: integer
+                  required:
+                  - id
+                  - date
+                  - city
+                  - user_id
+                  - item_id
+    post:
+      summary: create reservation
+      tags:
+      - Reservations
+      parameters: []
+      responses:
+        '201':
+          description: Reservation created
+        '422':
+          description: Invalid request
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                date:
+                  type: string
+                  format: date
+                city:
+                  type: string
+                user_id:
+                  type: integer
+                item_id:
+                  type: integer
+              required:
+              - date
+              - city
+              - user_id
+              - item_id
+  "/api/v1/reservations/{id}":
+    parameters:
+    - name: id
+      in: path
+      description: id
+      required: true
+      schema:
+        type: string
+    get:
+      summary: show reservation
+      tags:
+      - Reservations
+      description: All reservations fetched successfully
+      responses:
+        '200':
+          description: Reservation fetched
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                    date:
+                      type: string
+                      format: date
+                    city:
+                      type: string
+                    user_id:
+                      type: integer
+                    item_id:
+                      type: integer
+                  required:
+                  - id
+                  - date
+                  - city
+                  - user_id
+                  - item_id
+        '404':
+          description: Reservation not found
+    delete:
+      summary: delete reservation
+      tags:
+      - Reservations
+      responses:
+        '200':
+          description: Reservation destroyed
+  "/api/v1/users":
+    get:
+      summary: list users
+      tags:
+      - Users
+      description: All users fetched successfully
+      responses:
+        '200':
+          description: All users fetched
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  users:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                        name:
+                          type: string
+                        email:
+                          type: string
+                      required:
+                      - id
+                      - name
+                      - email
+    post:
+      summary: create user
+      tags:
+      - Users
+      parameters: []
+      responses:
+        '201':
+          description: User created
+        '422':
+          description: Invalid request
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                email:
+                  type: string
+                password:
+                  type: string
+                password_confirmation:
+                  type: string
+              required:
+              - name
+              - email
+              - password
+              - password_confirmation
+  "/api/v1/users/{id}":
+    parameters:
+    - name: id
+      in: path
+      description: id
+      required: true
+      schema:
+        type: string
+    get:
+      summary: show user
+      tags:
+      - Users
+      description: User fetched successfully
+      responses:
+        '200':
+          description: User fetched
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  users:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                        name:
+                          type: string
+                        email:
+                          type: string
+                      required:
+                      - id
+                      - name
+                      - email
+        '404':
+          description: User not found
+    delete:
+      summary: delete user
+      tags:
+      - Users
+      responses:
+        '200':
+          description: User deleted
+servers:
+- url: https://{defaultHost}
+  variables:
+    defaultHost:
+      default: 127.0.0.1:3000

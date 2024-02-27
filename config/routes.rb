@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
-  root to: 'api/v1/users#index'
+  mount Rswag::Ui::Engine => '/api-docs'
+  mount Rswag::Api::Engine => '/api-docs'
+  root to: redirect('/api-docs/index.html')
 
   get '/current_user', to: 'api/v1/users#my_profile'
   match '/logout', to: 'users/sessions#destroy', via: [:get, :delete]
