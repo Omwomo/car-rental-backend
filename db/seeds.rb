@@ -22,8 +22,8 @@ item2 = Item.create(admin: admin, name: 'Item 2', image: 'image_data_2', descrip
 item3 = Item.create(admin: admin, name: 'Item 3', image: 'image_data_3', description: 'Description 3', city: 'Seattle', adminId: '1')
 
 # Create Reservations
-reservation1 = Reservation.create(customer: user2, reserve_for_use_date: Date.today, city: 'Los Angeles', customer_id: '1')
-reservation2 = Reservation.create(customer: user1, reserve_for_use_date: Date.tomorrow, city: 'New York', customer_id: '1')
+reservation1 = Reservation.create(customer: user2, reserveForUseDate: Date.today, city: 'Los Angeles', customer_id: '1', item_id: '2')
+reservation2 = Reservation.create(customer: user1, reserveForUseDate: Date.tomorrow, city: 'New York', customer_id: '1', item_id: '2')
 
 # Create ReservationItems
 ReservationItem.create(reservation: reservation1, item: item1)
