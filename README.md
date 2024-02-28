@@ -97,10 +97,13 @@ The front-end repo is available [here](https://github.com/bhushan354/Full-Stack-
 ```
 
 - Update the config/database.yml with your database credentials under the development section
-- 
-- Run this command in your command line interface:
+
+- Update the GEMFILE to match your version of ruby.
+ 
+- Run these command in your command line interface:
 
 ```sh
+ bundle install
  rails db:drop
  rails db:create
  rails db:migrate
