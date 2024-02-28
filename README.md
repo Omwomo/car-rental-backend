@@ -103,8 +103,8 @@ The front-end repo is available [here](https://github.com/bhushan354/Full-Stack-
 - Run these command in your command line interface:
 
 ```sh
- bundle install
  git checkout dev
+ sudo bundle install
  rails db:drop
  rails db:create
  rails db:migrate
