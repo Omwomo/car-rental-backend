@@ -18,7 +18,7 @@ user2 = User.create(username: 'ali_rao', firstName: 'ali', lastName: 'rao', city
 
 # Create Items
 item1 = Item.create(admin: admin, name: 'BMW', image: 'https://imgd.aeplcdn.com/370x208/n/cw/ec/130591/fronx-exterior-right-front-three-quarter-109.jpeg?isig=0&q=80', description: 'Exquisite design, powerful performance, and unparalleled luxury redefine driving excellence.', city: 'Chicago', adminId: '1')
-item2 = Item.create(admin: admin, name: 'Item 2', image: 'image_data_2', description: 'Description 2', city: 'San Francisco', adminId: '1')
+item2 = Item.create(admin: admin, name: 'Bugatti', image: 'image_data_2', description: 'Description 2', city: 'San Francisco', adminId: '1')
 item3 = Item.create(admin: admin, name: 'Item 3', image: 'image_data_3', description: 'Description 3', city: 'Seattle', adminId: '1')
 
 # Create Reservations
