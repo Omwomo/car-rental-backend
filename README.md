@@ -104,7 +104,7 @@ The front-end repo is available [here](https://github.com/bhushan354/Full-Stack-
 
 ```sh
  git checkout dev
- sudo bundle install
+ sudo bundle install (Note : this command is only for UNIX and LINUX users if you are using windows run the terminal as a administrator and then run 'bundle install')
  rails db:drop
  rails db:create
  rails db:migrate
