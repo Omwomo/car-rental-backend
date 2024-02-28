@@ -92,14 +92,20 @@ The front-end repo is available [here](https://github.com/bhushan354/Full-Stack-
 
 ```sh
   cd [YOUR FOLDER]
-  git git@github.com:bhushan354/Full-Stack-Capstone-Backend.git
+  git clone git@github.com:bhushan354/Full-Stack-Capstone-Backend.git
   cd Full-Stack-Capstone-Backend
-  rails db:migrate
-  rails db:seed
- 
 ```
 
-- Update the database.yml with your database credentials under the development section
+- Update the config/database.yml with your database credentials under the development section
+- 
+- Run this command in your command line interface:
+
+```sh
+ rails db:drop
+ rails db:create
+ rails db:migrate
+ rails db:seed
+```
 
 
 ### Usage
