@@ -104,6 +104,7 @@ The front-end repo is available [here](https://github.com/bhushan354/Full-Stack-
 
 ```sh
  bundle install
+ git checkout dev
  rails db:drop
  rails db:create
  rails db:migrate
