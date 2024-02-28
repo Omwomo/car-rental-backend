@@ -22,7 +22,7 @@
   - [👥 Authors ](#-authors-)
   - [🔭 Future Features ](#-future-features-)
   - [🤝 Contributing ](#-contributing-)
-  - [⭐️ Show your support ](#️-show-your-support-)
+  - [⭐ Show your support ](#-show-your-support-)
   - [🙏 Acknowledgments ](#-acknowledgments-)
   - [📝 License ](#-license-)
 
@@ -30,7 +30,7 @@
 
 # 📖 Full-Stack-Capstone-Backend
 
-**The Full-Stack-Capstone-Backend** is a mobile web application where user can manage the budget.
+*The Full-Stack-Capstone-Backend* is an API application for managing car rental databases.
 
 ## 🛠 Built With <a name="built-with"></a>
 - ✅ Ruby
@@ -52,13 +52,13 @@
 
 ### Key Features <a name="key-features"></a>
 
-- 🔰 **Splash Welcome page**
+- 🔰 *Splash Welcome page*
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## Front-End-Link
 
-The front-end repo is available [here](https://github.com/bhushan354/Full-Stack-Capstone-Backend)
+The front-end repo is available [here](https://github.com/bhushan354/Full-Stack-Capstone-Frontend/tree/dev)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -66,14 +66,14 @@ The front-end repo is available [here](https://github.com/bhushan354/Full-Stack-
 
 ## 💻 Getting Started <a name="getting-started"></a>
 
-**To get a local copy up and running, follow these steps.**
+*To get a local copy up and running, follow these steps.*
 
 1. Download or clone this [repostory](git@github.com:bhushan354/Full-Stack-Capstone-Backend.git).
 2. Provide a modern web browser.
 
 ### Prerequisites
 
-**In order to run this project you need:**
+*In order to run this project you need:*
 
 - ✔ Ruby installed in your machine. you can download it from [here](https://www.ruby-lang.org/en/downloads/)
 - ✔ IDE or a code editor installed in your machine.
@@ -92,14 +92,26 @@ The front-end repo is available [here](https://github.com/bhushan354/Full-Stack-
 
 ```sh
   cd [YOUR FOLDER]
-  git git@github.com:bhushan354/Full-Stack-Capstone-Backend.git
+  git clone git@github.com:bhushan354/Full-Stack-Capstone-Backend.git
   cd Full-Stack-Capstone-Backend
-  rails db:migrate
-  rails db:seed
- 
+  git checkout dev
 ```
 
-- Update the database.yml with your database credentials under the development section
+- Update the config/database.yml with your database credentials under the development section
+
+- Update the GEMFILE to match your version of ruby.
+
+- Run these command in your command line interface:
+
+```sh
+ sudo bundle install
+ rails db:drop
+ rails db:create
+ rails db:migrate
+ rails db:seed
+```
+
+-  (Note : this 'sudo bundle install' command is only for UNIX and LINUX users if you are using windows run the terminal as a administrator and then run 'bundle install')
 
 
 ### Usage
@@ -112,7 +124,7 @@ The front-end repo is available [here](https://github.com/bhushan354/Full-Stack-
 
 ### Deployment
 
-**This project is deployed by the author, no permission for deployment by any other client.**
+*This project is deployed by the author, no permission for deployment by any other client.*
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -120,19 +132,19 @@ The front-end repo is available [here](https://github.com/bhushan354/Full-Stack-
 
 ## 👥 Authors <a name="authors"></a>
 
-👤 **Umauir Muqeem**
+👤 *Umauir Muqeem*
 
 - GitHub: [@bhushan354](https://github.com/bhushan354)
 - Twitter: [@umair_ra0](https://twitter.com/umair_ra0)
 - LinkedIn: [Umair Muqeem](https://linkedin.com/in/engr-umair-muqeem)
 
-👤 **Eugene Omwomo**
+👤 *Eugene Omwomo*
 
 - GitHub: [@Omwomo](https://github.com/Omwomo)
 - Twitter: [@eugeneoduor9](https://twitter.com/eugeneoduor9)
 - LinkedIn: [LinkedIn](https://linkedin.com/in/Omwomo)
 
-👤 **Bhushan Deshmukh**
+👤 *Bhushan Deshmukh*
 
 - GitHub: [@bhushan354](https://github.com/bhushan354)
 - LinkedIn: [Bhushan Deshmukh](https://www.linkedin.com/in/bhushan-deshmukh-5777851b1/)
@@ -144,7 +156,7 @@ The front-end repo is available [here](https://github.com/bhushan354/Full-Stack-
 
 ## 🔭 Future Features <a name="future-features"></a>
 
-- **Add info about each category**
+- *Add info about each category*
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -160,9 +172,9 @@ Feel free to check the [issues page](https://github.com/bhushan354/Full-Stack-Ca
 
 <!-- SUPPORT -->
 
-## ⭐️ Show your support <a name="support"></a>
+## ⭐ Show your support <a name="support"></a>
 
-If you like this project, kindly drop a start ⭐️ for the [repository](git@github.com:bhushan354/hello-rails-.git);
+If you like this project, kindly drop a start ⭐ for the [repository](git@github.com:bhushan354/hello-rails-.git);
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -170,7 +182,7 @@ If you like this project, kindly drop a start ⭐️ for the [repository](git@gi
 
 ## 🙏 Acknowledgments <a name="acknowledgements"></a>
 
-I would like to express my heartfelt gratitude to **Microvere** for the invaluable learning experience they have provided. Also I would like to thank to Stanley osagie for his support during react.
+I would like to express my heartfelt gratitude to *Microvere* for the invaluable learning experience they have provided. Also I would like to thank to Stanley osagie for his support during react.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -180,4 +192,4 @@ I would like to express my heartfelt gratitude to **Microvere** for the invaluab
 
 This project is [MIT](./LICENSE) licensed.
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
