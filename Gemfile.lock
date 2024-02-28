@@ -298,6 +298,7 @@ DEPENDENCIES
   rack-cors
   rails (~> 7.1.3)
   rspec-rails
+  rspec-support (= 3.12.1)
   rswag
   rubocop (>= 1.0, < 2.0)
   tzinfo-data
