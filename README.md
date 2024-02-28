@@ -58,7 +58,7 @@
 
 ## Front-End-Link
 
-The front-end repo is available [here](https://github.com/bhushan354/Full-Stack-Capstone-Frontend/dev)
+The front-end repo is available [here]([https://github.com/bhushan354/Full-Stack-Capstone-Frontend/dev])
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
