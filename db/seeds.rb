@@ -13,8 +13,8 @@
 admin = User.create(username: 'admin', firstName: 'Admin', lastName: 'User', city: 'AnyCity', email: 'admin@example.com', password: 'password')
 
 # Create regular users
-user1 = User.create(username: 'john_doe', firstName: 'John', lastName: 'Doe', city: 'New York')
-user2 = User.create(username: 'jane_smith', firstName: 'Jane', lastName: 'Smith', city: 'Los Angeles')
+user1 = User.create(username: 'umair_rao', firstName: 'Umair', lastName: 'Rao', city: 'Lahore')
+user2 = User.create(username: 'ali_rao', firstName: 'ali', lastName: 'rao', city: 'Karachi')
 
 # Create Items
 item1 = Item.create(admin: admin, name: 'Item 1', image: 'image_data_1', description: 'Description 1', city: 'Chicago', adminId: '1')
