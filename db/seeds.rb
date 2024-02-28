@@ -17,7 +17,7 @@ user1 = User.create(username: 'umair_rao', firstName: 'Umair', lastName: 'Rao', 
 user2 = User.create(username: 'ali_rao', firstName: 'ali', lastName: 'rao', city: 'Karachi')
 
 # Create Items
-item1 = Item.create(admin: admin, name: 'BMW', image: 'image_data_1', description: 'Description 1', city: 'Chicago', adminId: '1')
+item1 = Item.create(admin: admin, name: 'BMW', image: 'https://imgd.aeplcdn.com/370x208/n/cw/ec/130591/fronx-exterior-right-front-three-quarter-109.jpeg?isig=0&q=80', description: 'Description 1', city: 'Chicago', adminId: '1')
 item2 = Item.create(admin: admin, name: 'Item 2', image: 'image_data_2', description: 'Description 2', city: 'San Francisco', adminId: '1')
 item3 = Item.create(admin: admin, name: 'Item 3', image: 'image_data_3', description: 'Description 3', city: 'Seattle', adminId: '1')
 
