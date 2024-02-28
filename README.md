@@ -90,12 +90,12 @@ The front-end repo is available [here](https://github.com/bhushan354/Full-Stack-
 
 - Run this command in your command line interface:
 
-sh
+```sh
   cd [YOUR FOLDER]
   git clone git@github.com:bhushan354/Full-Stack-Capstone-Backend.git
   cd Full-Stack-Capstone-Backend
   git checkout dev
-
+```
 
 - Update the config/database.yml with your database credentials under the development section
 
@@ -103,12 +103,13 @@ sh
 
 - Run these command in your command line interface:
 
-sh
+```sh
  sudo bundle install
  rails db:drop
  rails db:create
  rails db:migrate
  rails db:seed
+```
 
 -  (Note : this 'sudo bundle install' command is only for UNIX and LINUX users if you are using windows run the terminal as a administrator and then run 'bundle install')
 
@@ -117,9 +118,9 @@ sh
 
 - To run the project, execute the following command:
 
-sh
+```sh
    rails server
-
+```
 
 ### Deployment
 
