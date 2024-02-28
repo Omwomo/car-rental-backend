@@ -94,6 +94,7 @@ The front-end repo is available [here](https://github.com/bhushan354/Full-Stack-
   cd [YOUR FOLDER]
   git clone git@github.com:bhushan354/Full-Stack-Capstone-Backend.git
   cd Full-Stack-Capstone-Backend
+  git checkout dev
 ```
 
 - Update the config/database.yml with your database credentials under the development section
@@ -103,7 +104,6 @@ The front-end repo is available [here](https://github.com/bhushan354/Full-Stack-
 - Run these command in your command line interface:
 
 ```sh
- git checkout dev
  sudo bundle install
  rails db:drop
  rails db:create
