@@ -21,10 +21,6 @@ item1 = Item.create(admin: admin, name: 'BMW', image: 'https://imgd.aeplcdn.com/
 item2 = Item.create(admin: admin, name: 'Bugatti', image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRdvfuMwm1p6V4fTWCEb5irnaDB-EdXYJzjTA&usqp=CAU', description: 'Unrivaled speed, precision engineering, and opulent design redefine automotive luxury.', city: 'San Francisco', financeFee: '20', purchaseFee: '20', totalAmount: '32', apr: '2',duration:'3', adminId: '1')
 item3 = Item.create(admin: admin, name: 'Honda', image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSySr0V2R5ZFfVlTiI6S8IdtIBxX2QW32oFfA&usqp=CAU', description: 'Reliable, efficient, and versatile vehicles, delivering quality and innovation effortlessly.', city: 'Seattle', financeFee: '20', purchaseFee: '20', totalAmount: '32', apr: '2',duration:'3', adminId: '1')
 
-# Create Reservations
-reservation1 = Reservation.create(customer: user2, reserveForUseDate: Date.today, city: 'Los Angeles', customer_id: '1', item_id: '2')
-reservation2 = Reservation.create(customer: user1, reserveForUseDate: Date.tomorrow, city: 'New York', customer_id: '1', item_id: '2')
-
 # Create ReservationItems
 ReservationItem.create(reservation: reservation1, item: item1)
 ReservationItem.create(reservation: reservation1, item: item2)
