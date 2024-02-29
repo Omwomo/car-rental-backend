@@ -3,7 +3,7 @@
 
 <div align="center">
 
-  <h3><b>Full-Stack-Capstone-Backend: Reservation App</b></h3>
+  <h3><b>Full-Stack-Capstone-Backend: Vehicle Reservation App</b></h3>
 
 </div>
 # 📗 Table of Contents
@@ -97,7 +97,6 @@ The front-end repo is available [here](https://github.com/bhushan354/Full-Stack-
   cd [YOUR FOLDER]
   git clone git@github.com:bhushan354/Full-Stack-Capstone-Backend.git
   cd Full-Stack-Capstone-Backend
-  git checkout dev
 ```
 
 - Update the config/database.yml with your database credentials under the development section
