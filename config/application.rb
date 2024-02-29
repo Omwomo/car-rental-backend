@@ -6,7 +6,7 @@ require "rails/all"
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
-module FullStackCapstoneBackend
+module BookAnAppointment
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 7.1
@@ -15,6 +15,13 @@ module FullStackCapstoneBackend
     # not contain `.rb` files, or that should not be reloaded or eager loaded.
     # Common ones are `templates`, `generators`, or `middleware`, for example.
     config.autoload_lib(ignore: %w(assets tasks))
+
+    # config.session_store :cookie_store, key: '_imuwahen_session'
+    config.session_store :cookie_store, key: '_bhushan_umair', secure: Rails.env.production?, httponly: true, expire_after: 2.weeks
+
+    config.middleware.use ActionDispatch::Cookies
+    config.middleware.use config.session_store, config.session_options
+
 
     # Configuration for the application, engines, and railties goes here.
     #
