@@ -3,7 +3,7 @@
 
 <div align="center">
 
-  <h3><b>Full-Stack-Capstone-Backend</b></h3>
+  <h3><b>Full-Stack-Capstone-Backend: Reservation App</b></h3>
 
 </div>
 # 📗 Table of Contents
@@ -38,13 +38,16 @@
 - ✅ Postgresql
 - ✅ Linters
 
+### Kanban Board
+Link to Kanban Board: https://github.com/users/bhushan354/projects/6 <br>
+Link to kanban board issue : https://github.com/bhushan354/Full-Stack-Capstone-Frontend/issues/12
+
 ### Tech Stack <a name="tech-stack"></a>
 
 <details>
   <summary>Language</summary>
   <ul>
     <li>Ruby-on-Rails</li>
-    <li>React</li>
   </ul>
 </details>
 
@@ -52,7 +55,7 @@
 
 ### Key Features <a name="key-features"></a>
 
-- 🔰 *Splash Welcome page*
+- 🔰 *Reserve a Vehicle for a Particular Date or Add a Vehicle for Reservations.*
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -121,6 +124,11 @@ The front-end repo is available [here](https://github.com/bhushan354/Full-Stack-
 ```sh
    rails server
 ```
+### Api-Documentation
+- After running 'rails server' paste this link in your browser to see full Api-Documentation.
+```sh
+   http://127.0.0.1:3000/api-docs/index.html
+```
 
 ### Deployment
 
@@ -132,11 +140,11 @@ The front-end repo is available [here](https://github.com/bhushan354/Full-Stack-
 
 ## 👥 Authors <a name="authors"></a>
 
-👤 *Umauir Muqeem*
+👤 **Muhammad Umair Muqeem**
 
-- GitHub: [@bhushan354](https://github.com/bhushan354)
+- GitHub: [@umair-rao](https://github.com/umair-rao)
 - Twitter: [@umair_ra0](https://twitter.com/umair_ra0)
-- LinkedIn: [Umair Muqeem](https://linkedin.com/in/engr-umair-muqeem)
+- LinkedIn: [LinkedIn](https://www.linkedin.com/in/engr-umair-muqeem/)
 
 👤 *Eugene Omwomo*
 
