@@ -38,9 +38,6 @@
 - ✅ Postgresql
 - ✅ Linters
 
-### Kanban Board
-Link to Kanban Board: https://github.com/users/bhushan354/projects/6 <br>
-Link to kanban board issue : https://github.com/bhushan354/Full-Stack-Capstone-Frontend/issues/12
 
 ### Tech Stack <a name="tech-stack"></a>
 
@@ -55,7 +52,32 @@ Link to kanban board issue : https://github.com/bhushan354/Full-Stack-Capstone-F
 
 ### Key Features <a name="key-features"></a>
 
-- 🔰 *Reserve a Vehicle for a Particular Date or Add a Vehicle for Reservations.*
+- *🔐 User Authentication API* Implement a secure authentication system that supports user registration, login, and password management.
+Enable token-based authentication to ensure secure communication between the frontend and backend.
+
+- *🚗 Car Management API:* Develop endpoints to add, retrieve, update, and delete cars in the system.
+Implement logic to mark cars as removed when deleted by administrators, ensuring they are not displayed on the frontend.
+
+- *📅 Reservation Handling API:* Create endpoints to manage reservations, allowing users to make, view, and cancel reservations.
+Implement logic to autofill user information and selected car details during reservation creation.
+
+- *📊 Admin Privileges API:* Design a role-based access control system to differentiate between regular users and administrators.
+Allow administrators to access the delete car functionality and other admin-specific features.
+
+- *📱 Responsive Design API:* Develop API endpoints that provide data in a format optimized for both mobile and desktop views.
+Ensure the backend supports responsive design principles, facilitating an optimal user experience on various devices.
+
+- *📄 API Documentation using Rails Rswag:* Leverage Rails Rswag to generate comprehensive and user-friendly API documentation.
+Include details about each endpoint, expected request/response formats, and authentication requirements.
+
+- *🔍 Search and Filtering API:* Implement search and filtering capabilities for cars based on various criteria such as city, availability, and car features.
+Enable users to efficiently find and reserve cars that match their preferences.
+
+- *🔄 Real-time Updates API:* Implement a system for real-time updates to notify users of changes in car availability, reservation status, or other relevant information.
+Utilize technologies such as WebSockets or server-sent events to enable real-time communication between the backend and frontend.
+
+- *📈 Analytics and Reporting API:* Develop APIs for collecting and analyzing data related to reservations, user activity, and car availability.
+Provide administrators with insights through reporting features to help in decision-making and system optimization.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -95,7 +117,7 @@ The front-end repo is available [here](https://github.com/omwomo/car-rental-back
 
 ```sh
   cd [YOUR FOLDER]
-  git clone git@github.com:bhushan354/Full-Stack-Capstone-Backend.git
+  git clone git@github.com:omwomo/car-rental-backend.git
   cd Full-Stack-Capstone-Backend
 ```
 - open the folder in your code editor
