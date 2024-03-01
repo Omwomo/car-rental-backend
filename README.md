@@ -3,13 +3,13 @@
 
 <div align="center">
 
-  <h3><b>Full-Stack-Capstone-Backend: Vehicle Reservation App</b></h3>
+  <h3><b>Car-Rental-Backend: Vehicle Reservation App</b></h3>
 
 </div>
 # 📗 Table of Contents
 
 - [📗 Table of Contents](#-table-of-contents)
-- [📖 Full-Stack-Capstone-Backend](#-full-stack-capstone-backend)
+- [📖 Car-Rental-Backend](#-Car-Rental-Backend)
   - [🛠 Built With ](#-built-with-)
     - [Tech Stack ](#tech-stack-)
     - [Key Features ](#key-features-)
@@ -28,9 +28,9 @@
 
 <!-- PROJECT DESCRIPTION -->
 
-# 📖 Full-Stack-Capstone-Backend
+# 📖 Car-Rental-Backend
 
-*The Full-Stack-Capstone-Backend* is an API application for managing car rental databases.
+*The Car-Rental-Backend* is an API application for managing car rental databases.
 
 ## 🛠 Built With <a name="built-with"></a>
 - ✅ Ruby
@@ -61,7 +61,7 @@ Link to kanban board issue : https://github.com/bhushan354/Full-Stack-Capstone-F
 
 ## Front-End-Link
 
-The front-end repo is available [here](https://github.com/bhushan354/Full-Stack-Capstone-Frontend/tree/dev)
+The front-end repo is available [here](https://github.com/omwomo/car-rental-backend/)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -71,7 +71,7 @@ The front-end repo is available [here](https://github.com/bhushan354/Full-Stack-
 
 *To get a local copy up and running, follow these steps.*
 
-1. Download or clone this [repostory](git@github.com:bhushan354/Full-Stack-Capstone-Backend.git).
+1. Download or clone this [repostory](git@github.com/omwomo/car-rental-backend/.git).
 2. Provide a modern web browser.
 
 ### Prerequisites
@@ -89,7 +89,7 @@ The front-end repo is available [here](https://github.com/bhushan354/Full-Stack-
 
 ### Setup
 
-- Clone this [repository](git@github.com:bhushan354/Full-Stack-Capstone-Backend.git) to your desired folder:
+- Clone this [repository](git@github.com/omwomo/car-rental-backend/.git) to your desired folder:
 
 - Run this command in your command line interface:
 
@@ -174,7 +174,7 @@ The front-end repo is available [here](https://github.com/bhushan354/Full-Stack-
 
 Contributions, issues, and feature requests are welcome!
 
-Feel free to check the [issues page](https://github.com/bhushan354/Full-Stack-Capstone-Backend/issues).
+Feel free to check the [issues page](https://github.com/omwomo/car-rental-backend/issues).
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -182,7 +182,7 @@ Feel free to check the [issues page](https://github.com/bhushan354/Full-Stack-Ca
 
 ## ⭐ Show your support <a name="support"></a>
 
-If you like this project, kindly drop a start ⭐ for the [repository](git@github.com:bhushan354/hello-rails-.git);
+If you like this project, kindly drop a start ⭐ for the [repository](https://github.com/omwomo/car-rental-backend);
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
