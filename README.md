@@ -212,7 +212,7 @@ If you like this project, kindly drop a start ⭐ for the [repository](https://g
 
 ## 🙏 Acknowledgments <a name="acknowledgements"></a>
 
-I would like to express my heartfelt gratitude to *Microvere* for the invaluable learning experience they have provided. Also I would like to thank to Stanley osagie for his support during react.
+I would like to express my heartfelt gratitude to my teammates for hard work and great collaboration efforts.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
