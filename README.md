@@ -30,7 +30,7 @@
 
 # 📖 Car-Rental-Backend
 
-*The Car-Rental-Backend* is an API application for managing car rental databases.
+*The Car-Rental-Backend* is the backbone of a user-friendly car rental web app. It ensures secure user authentication, powers features like browsing cars and managing reservations, and provides exclusive admin functions. The backend guarantees data consistency, and responsiveness for both mobile and desktop, and offers detailed API documentation using Rails Rswag for seamless integration with the frontend.
 
 ## 🛠 Built With <a name="built-with"></a>
 - ✅ Ruby
